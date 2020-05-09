@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Lab1_part4_Notepad
 {
-	public partial class Form1 : Form
+    public partial class Form1 : Form
 	{
 
         private int openDocuments = 0;
@@ -126,6 +118,8 @@ namespace Lab1_part4_Notepad
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            saveToolStripMenuItem.Enabled = true;
+
             //Если выбран диалог открытия файла, выполняем условие
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
@@ -133,15 +127,12 @@ namespace Lab1_part4_Notepad
                 blank frm = (blank)this.ActiveMdiChild;
                 //Вызываем метод Save формы blank
                 frm.Save(saveFileDialog1.FileName);
-
                 //Указываем, что родительской формой является форма frmmain
                 frm.MdiParent = this;
                 //Присваиваем переменной FileName имя сохраняемого файла
                 frm.DocName = saveFileDialog1.FileName;
                 //Свойству Text формы присваиваем переменную DocName
                 frm.Text = frm.DocName;
-
-                saveToolStripMenuItem.Enabled = true;
                 frm.IsSaved = true;
             }
         }
@@ -209,6 +200,40 @@ namespace Lab1_part4_Notepad
             //Создаем новый экземпляр формы About
             About frm = new About();
             frm.Show();
+        }
+
+        private void toolBarMain_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            //New
+            if (e.ClickedItem.Equals(tbNew))
+            {
+                newToolStripMenuItem_Click(this, new EventArgs());
+            }
+           //Open
+            if (e.ClickedItem.Equals(tbOpen))
+            {
+                openToolStripMenuItem_Click(this, new EventArgs());
+            }
+            //Save
+            if (e.ClickedItem.Equals(tbSave))
+            {
+                saveToolStripMenuItem_Click(this, new EventArgs());
+            }
+            //Cut
+            if (e.ClickedItem.Equals(tbCut))
+            {
+                cutToolStripMenuItem1_Click(this, new EventArgs());
+            }
+            //Copy
+            if (e.ClickedItem.Equals(tbCopy))
+            {
+                copyToolStripMenuItem_Click(this, new EventArgs());
+            }
+            //Paste
+            if (e.ClickedItem.Equals(tbPaste))
+            {
+                pasteToolStripMenuItem_Click(this, new EventArgs());
+            }
         }
     }
 }

@@ -20,6 +20,11 @@ namespace Lab1_part4_Notepad
         public blank()
         {
             InitializeComponent();
+            //Свойству Text панели sbTime устанавливаем системное время,
+            // конвертировав его в тип String
+            sbTime.Text = Convert.ToString(System.DateTime.Now.ToLongTimeString());
+            //В тексте всплывающей подсказки выводим текущую дату
+            sbTime.ToolTipText = Convert.ToString(System.DateTime.Today.ToLongDateString());
         }
 
         private void blank_Load(object sender, EventArgs e)
@@ -134,6 +139,15 @@ namespace Lab1_part4_Notepad
                     this.Save(this.DocName);
                 }
         }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            //Свойству Text панели sbAmount устанавливаем надпись "Аmount of symbols"
+            //и длину текста в RichTextBox.
+            sbAmount.Text = "Аmount of symbols" + richTextBox1.Text.Length.ToString();
+        }
+
+     
     }
 }
 

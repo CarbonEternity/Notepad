@@ -146,6 +146,44 @@ namespace Lab1_part4_Notepad
             }
         }
 
-   
+        private void fontToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Переключаем фокус на данную форму.
+            blank frm = (blank)this.ActiveMdiChild;
+            //Указываем, что родительской формой является форма frmmain
+            frm.MdiParent = this;
+            //Вызываем диалог
+            fontDialog1.ShowColor = true;
+            //Связываем свойства SelectionFont и SelectionColor элемента RichTextBox
+            //с соответствующими свойствами диалога
+            fontDialog1.Font = frm.richTextBox1.SelectionFont;
+            fontDialog1.Color = frm.richTextBox1.SelectionColor;
+            //Если выбран диалог открытия файла, выполняем условие
+            if (fontDialog1.ShowDialog() == DialogResult.OK)
+            {
+                frm.richTextBox1.SelectionFont = fontDialog1.Font;
+                frm.richTextBox1.SelectionColor = fontDialog1.Color;
+            }
+            //Показываем форму
+            frm.Show();
+        }
+
+        private void colorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            blank frm = (blank)this.ActiveMdiChild;
+            frm.MdiParent = this;
+            colorDialog1.Color = frm.richTextBox1.SelectionColor;
+
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+            {
+                frm.richTextBox1.SelectionColor = colorDialog1.Color;
+            }
+            frm.Show();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

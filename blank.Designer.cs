@@ -37,7 +37,11 @@
             this.deleteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.selectAllToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.StatusStrip = new System.Windows.Forms.StatusStrip();
+            this.sbAmount = new System.Windows.Forms.ToolStripStatusLabel();
+            this.sbTime = new System.Windows.Forms.ToolStripStatusLabel();
             this.contextMenuStrip1.SuspendLayout();
+            this.StatusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // richTextBox1
@@ -49,6 +53,7 @@
             this.richTextBox1.Size = new System.Drawing.Size(800, 450);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
+            this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
             // contextMenuStrip1
             // 
@@ -102,11 +107,35 @@
             this.selectAllToolStripMenuItem1.Text = "Select All";
             this.selectAllToolStripMenuItem1.Click += new System.EventHandler(this.selectAllToolStripMenuItem1_Click);
             // 
+            // StatusStrip
+            // 
+            this.StatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sbAmount,
+            this.sbTime});
+            this.StatusStrip.Location = new System.Drawing.Point(0, 428);
+            this.StatusStrip.Name = "StatusStrip";
+            this.StatusStrip.Size = new System.Drawing.Size(800, 22);
+            this.StatusStrip.TabIndex = 1;
+            // 
+            // sbAmount
+            // 
+            this.sbAmount.Name = "sbAmount";
+            this.sbAmount.Size = new System.Drawing.Size(121, 17);
+            this.sbAmount.Text = "Amount of symbols:  ";
+            // 
+            // sbTime
+            // 
+            this.sbTime.Margin = new System.Windows.Forms.Padding(100, 3, 0, 2);
+            this.sbTime.Name = "sbTime";
+            this.sbTime.Size = new System.Drawing.Size(33, 17);
+            this.sbTime.Text = "Time";
+            // 
             // blank
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.StatusStrip);
             this.Controls.Add(this.richTextBox1);
             this.Name = "blank";
             this.Text = "Form2";
@@ -114,13 +143,16 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.blank_FormClosing);
             this.Load += new System.EventHandler(this.blank_Load);
             this.contextMenuStrip1.ResumeLayout(false);
+            this.StatusStrip.ResumeLayout(false);
+            this.StatusStrip.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
 		}
 
 		#endregion
 
-		private System.Windows.Forms.RichTextBox richTextBox1;
+		public System.Windows.Forms.RichTextBox richTextBox1;
 		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
 		private System.Windows.Forms.ToolStripMenuItem cutToolStripMenuItem2;
 		private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem1;
@@ -128,5 +160,8 @@
 		private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem1;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
 		private System.Windows.Forms.ToolStripMenuItem selectAllToolStripMenuItem1;
-	}
+        private System.Windows.Forms.StatusStrip StatusStrip;
+        private System.Windows.Forms.ToolStripStatusLabel sbAmount;
+        private System.Windows.Forms.ToolStripStatusLabel sbTime;
+    }
 }

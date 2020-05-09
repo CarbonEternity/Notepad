@@ -185,5 +185,30 @@ namespace Lab1_part4_Notepad
         {
             this.Close();
         }
+
+        private void mnuFind_Click(object sender, EventArgs e)
+        {
+            //Создаем новый экземпляр формы FindForm
+            FindForm frm = new FindForm();
+            //Если выбран результат DialogResult.Cancel, закрываем форму (до этого
+            //мы использовали DialogResult.OK)
+            if (frm.ShowDialog(this) == DialogResult.Cancel) return;
+            ////Переключаем фокус на данную форму.
+            blank form = (blank)this.ActiveMdiChild;
+            ////Указываем, что родительской формой является форма frmmain
+            form.MdiParent = this;
+            //Вводим переменную для поиска в определенной части текста —
+            //поиск слова будет осуществляться от текущей позиции курсора
+            int start = form.richTextBox1.SelectionStart;
+            //Вызываем предопределенный метод Find элемента richTextBox1.
+            form.richTextBox1.Find(frm.FindText, start, frm.FindCondition);
+        }
+
+        private void aboutProgrammToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Создаем новый экземпляр формы About
+            About frm = new About();
+            frm.Show();
+        }
     }
 }

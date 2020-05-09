@@ -11,12 +11,9 @@ using System.IO;
 
 namespace Lab1_part4_Notepad
 {
-
-
-
     public partial class blank : Form
     {
-
+        public bool IsSaved = false;
         public string DocName = "";
         private string BufferText = "";
 
@@ -51,7 +48,7 @@ namespace Lab1_part4_Notepad
         {
             richTextBox1.SelectAll();
         }
-        
+
         public void Delete()
         {
             richTextBox1.SelectedText = "";
@@ -123,6 +120,20 @@ namespace Lab1_part4_Notepad
             }
         }
 
-       
+        private void blank_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //Если переменная IsSaved имеет значение true, т. е. новый документ
+            //был сохранен (Save As) или в открытом документе были сохранены изменения (Save), то //выполняется условие
+            if (IsSaved == true)
+                //Появляется диалоговое окно, предлагающее сохранить документ.
+                if (MessageBox.Show("Do you want save changes in " + this.DocName + "?",
+                "Message", MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question) == DialogResult.Yes)
+                //Если была нажата кнопка Yes, вызываем метод Save
+                {
+                    this.Save(this.DocName);
+                }
+        }
     }
 }
+

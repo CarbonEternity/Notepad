@@ -71,6 +71,7 @@ namespace Lab1_part4_Notepad
             blank frm = (blank)this.ActiveMdiChild;
             //Вызываем метод Save формы blank
             frm.Save(frm.DocName);
+            frm.IsSaved = true;
         }
 
 
@@ -141,6 +142,7 @@ namespace Lab1_part4_Notepad
                 frm.Text = frm.DocName;
 
                 saveToolStripMenuItem.Enabled = true;
+                frm.IsSaved = true;
             }
         }
 
